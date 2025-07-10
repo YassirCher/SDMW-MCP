@@ -423,7 +423,7 @@ Si vous rencontrez des erreurs CORS :
 ### Mode Débogage
 Activer la journalisation de débogage dans `application.properties`:
 ```properties
-logging.level.ma.tajeddine.mcpclient=DEBUG
+logging.level.ma.yassir.mcpclient=DEBUG
 logging.level.org.springframework.ai=DEBUG
 ```
 
