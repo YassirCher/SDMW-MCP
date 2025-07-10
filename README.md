@@ -2,8 +2,8 @@
 
 # Projet MCP - Intégration Spring Boot & Python
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1-brightgreen.svg)
+![Python](https://img.shields.io/badge/Python-3.12-blue.svg)
 
 Une implémentation complète du protocole Model Context Protocol (MCP) comprenant un client Spring Boot et un serveur Python. Ce système démontre une fonctionnalité de chat basée sur l'IA avec intégration d'outils pour les informations boursières, les données d'entreprise, les opérations sur le système de fichiers et la gestion des employés.
 
