@@ -185,55 +185,86 @@ Une fois tous les services en cours d'exécution, vous devriez voir :
 
 ## Structure du Projet
 
-```
-mcp-project-spring-python/
-├── README.md
-├── mcp-client
-│   ├── HELP.md
-│   ├── mvnw
-│   ├── mvnw.cmd
-│   ├── pom.xml
-│   ├── src
-│   │   ├── main
-│   │   └── test
-│   └── target
-│       ├── classes
-│       ├── generated-sources
-│       ├── generated-test-sources
-│       └── test-classes
-├── mcp-server
-│   ├── HELP.md
-│   ├── mvnw
-│   ├── mvnw.cmd
-│   ├── pom.xml
-│   ├── src
-│   │   ├── main
-│   │   └── test
-│   └── target
-│       ├── classes
-│       ├── generated-sources
-│       ├── generated-test-sources
-│       └── test-classes
-├── pom.xml
-├── project_structure.txt
-├── python-mcp-server
-│   ├── README.md
-│   ├── __pycache__
-│   │   └── server.cpython-312.pyc
-│   ├── main.py
-│   ├── pyproject.toml
-│   ├── python-mcp-server.iml
-│   ├── server.py
-│   └── uv.lock
-├── src
-│   ├── main
-│   │   ├── java
-│   │   └── resources
-│   └── test
-│       └── java
-└── yassir-mcp-demo-spring-python.iml
+### Annotations Principales
+- `@Tool`: Utilisée dans Spring AI pour marquer une méthode comme un outil qui peut être appelé par le modèle de langage. Ces méthodes sont exposées à l'IA pour qu'elle puisse les utiliser afin de répondre à des requêtes spécifiques (ex: récupérer des informations boursières).
+- `@Agent`: Utilisée pour définir des composants qui orchestrent des interactions complexes, souvent en utilisant plusieurs outils ou en gérant la mémoire conversationnelle.
+- `@Service`: Annotation Spring standard indiquant que la classe est un 'Service' dans la couche de service de l'application, contenant la logique métier.
+- `@RestController`: Annotation Spring standard combinant `@Controller` et `@ResponseBody`, indiquant que la classe est un contrôleur REST gérant les requêtes HTTP.
 
-26 directories, 19 files
+### Arborescence du Projet (Focus sur les dossiers `main`)
+
+```
+.  
+├── mcp-client/  
+│   ├── HELP.md  
+│   ├── mvnw  
+│   ├── mvnw.cmd  
+│   ├── pom.xml  
+│   ├── src/  
+│   │   ├── main/  
+│   │   │   ├── java/  
+│   │   │   │   └── net/  
+│   │   │   │       └── yassir/  
+│   │   │   │           └── mcpclient/  
+│   │   │   │               ├── McpClientApplication.java  // Point d'entrée de l'application client Spring Boot  
+│   │   │   │               ├── agents/  
+│   │   │   │               │   └── AIAgent.java  // Agent d'intelligence artificielle  
+│   │   │   │               └── controllers/  
+│   │   │   │                   └── AIRestController.java  // Contrôleur REST pour l'API de l'agent AI  
+│   │   │   └── resources/  
+│   │   │       ├── application.properties  // Fichier de configuration de l'application Spring Boot  
+│   │   │       ├── mcp-servers.json  // Configuration des serveurs MCP  
+│   │   │       ├── static/  
+│   │   │       └── templates/  
+│   │   └── test/  
+│   │       └── java/  
+│   │           └── net/  
+│   │               └── yassir/  
+│   │                   └── mcpclient/  
+│   │                       └── McpClientApplicationTests.java  // Tests unitaires pour l'application client  
+│   └── target/  
+├── mcp-server/  
+│   ├── HELP.md  
+│   ├── mvnw  
+│   ├── mvnw.cmd  
+│   ├── pom.xml  
+│   ├── src/  
+│   │   ├── main/  
+│   │   │   ├── java/  
+│   │   │   │   └── net/  
+│   │   │   │       └── yassir/  
+│   │   │   │           └── mcpserver/  
+│   │   │   │               ├── McpServerApplication.java  // Point d'entrée de l'application serveur Spring Boot  
+│   │   │   │               └── tools/  
+│   │   │   │                   └── StockTolls.java  // Outils de gestion des stocks  
+│   │   │   └── resources/  
+│   │   │       └── application.properties  // Fichier de configuration de l'application serveur Spring Boot  
+│   │   └── test/  
+│   │       └── java/  
+│   │           └── net/  
+│   │               └── yassir/  
+│   │                   └── mcpserver/  
+│   │                       └── McpServerApplicationTests.java  // Tests unitaires pour l'application serveur  
+│   └── target/  
+├── pom.xml  // Fichier de configuration Maven principal du projet  
+├── python-mcp-server/  
+│   ├── README.md  
+│   ├── __pycache__/  
+│   ├── main.py  // Point d'entrée principal du serveur Python  
+│   ├── pyproject.toml  
+│   ├── python-mcp-server.iml  
+│   ├── server.py  // Logique du serveur Python  
+│   └── uv.lock  
+├── src/  
+│   ├── main/  
+│   │   ├── java/  
+│   │   │   └── org/  
+│   │   │       └── example/  
+│   │   │           └── Main.java  // Fichier Java principal (peut être un exemple ou un point d'entrée générique)  
+│   │   └── resources/  
+│   └── test/  
+│       └── java/  
+├── yassir-mcp-demo-spring-python.iml
 ```
 
 
@@ -468,7 +499,16 @@ spring.ai.anthropic.chat.options.model=claude-sonnet-4-20250514
 
 Cette section présente les différentes fonctionnalités et capacités du projet MCP à travers des démonstrations visuelles.
 
-<img width="1920" height="1080" alt="4" src="https://github.com/user-attachments/assets/1a10156e-c0e5-4450-9e7a-0f3804c7004e" />
+<img width="1600" height="855" alt="image" src="https://github.com/user-attachments/assets/a3d6d950-ab78-40fe-a839-ff27b1a2b8c5" />
+
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/415efa5d-9ad8-4a2e-8ea0-846deb778750" />
+<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/9923c177-0c04-4a0f-8fc6-dbeab04a082f" />
+<img width="1920" height="1080" alt="4" src="https://github.com/user-attachments/assets/f3a6ca6c-f78c-49e2-96a5-adc49a6fb1c0" />
+<img width="1920" height="1080" alt="6" src="https://github.com/user-attachments/assets/3a67fc0a-f1b0-477b-8a39-624e697d132c" />
+<img width="1920" height="1080" alt="7" src="https://github.com/user-attachments/assets/6171f40e-27b9-40fc-bcbc-1a9211a0b7dd" />
+<img width="1920" height="1080" alt="8" src="https://github.com/user-attachments/assets/78857316-45cb-4226-8db2-da857eab87cc" />
+<img width="1920" height="1080" alt="9" src="https://github.com/user-attachments/assets/993e4af8-22f7-4497-b891-f2af1cdd146d" />
+
 
 
 
